@@ -83,6 +83,23 @@ function makeMove($board, $column, $player)
     return $board; // No available spot in the column
 }
 
+function makeServerMove($board) {
+    // Collect all non-full columns
+    $nonFullColumns = [];
+    for ($col = 0; $col < 7; $col++) {
+        if ($board[0][$col] == '') {
+            $nonFullColumns[] = $col;
+        }
+    }
+
+    if (!empty($nonFullColumns)) {
+        $randomColumn = $nonFullColumns[array_rand($nonFullColumns)];
+        $board = makeMove($board, $randomColumn, 'O');
+    }
+
+    return $board;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
     $name = htmlspecialchars($_POST['name']); // Sanitize input
 
@@ -116,8 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
                       </form></p>";
                 exit();
             }
-            $column = rand(0, 6);
-            $board = makeMove($board, $column, 'O');
+            $board = makeServerMove($board);
             if (checkWinner($board, 'O')) {
                 echo "<p>I won!</p>";
                 displayBoard($board, $name);
