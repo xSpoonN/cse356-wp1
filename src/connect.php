@@ -107,9 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
     if (!isset($_POST['board'])) {
         $board = [['', '', '', '', '', '', ''], ['', '', '', '', '', '', ''], ['', '', '', '', '', '', ''], ['', '', '', '', '', '', ''], ['', '', '', '', '', '', '']];
     } else {
-        // Decode and update the board with the move
-        $boardValues = explode(' ', urldecode($_POST['board']));
-        $board = array_chunk($boardValues, 7);
+        // Split into rows using '.' as the delimiter, then split each row into columns using ' ' as the delimiter
+        $board = array_map(function ($row) {
+            return explode(' ', $row);
+        }, explode('.', urldecode($_POST['board'])));
 
         if (isset($_POST['column']) && is_numeric($_POST['column'])) {
             $column = intval($_POST['column']);
@@ -178,7 +179,11 @@ function displayBoard($board, $name)
         echo "<button type='submit' name='column' value='$col' class='colButton' " . ($columnFull ? 'disabled' : '') . ">" . ($col + 1) . "</button>";
     }
     echo "<input type='hidden' name='name' value='$name'>";
-    echo "<input type='hidden' name='board' value='" . urlencode(implode(' ', array_merge(...$board))) . "'>";
+    $tmp = array_map(function($row) {
+        return implode(' ', $row);
+    }, $board);
+    
+    echo "<input type='hidden' name='board' value='" . urlencode(implode('.', $tmp)) . "'>";
     echo "</form>";
 
     echo "<table border='1'>";
