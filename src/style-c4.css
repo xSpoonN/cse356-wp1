@@ -1,33 +1,46 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  margin: 1rem;
+}
+
 p {
-    color: rgb(2, 0, 136);
-    font-size: 24px;
-    font-weight: bold;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  color: rgb(2, 0, 136);
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 table {
-    border-collapse: collapse;
-    width: 200px;
-    height: 140px;
-    margin: 5px 0;
+  border-collapse: collapse;
+  width: 200px;
+  height: 140px;
+  margin: 5px 0;
 }
-table, th, td {
-    border: 1px solid black;
+table,
+th,
+td {
+  border: 1px solid black;
 }
-th, td {
-    padding: 10px;
-    min-width: 12px;
-    max-width: 12px;
-    height: 18px;
-    text-align: center;
+th,
+td {
+  padding: 10px;
+  min-width: 12px;
+  max-width: 12px;
+  height: 18px;
+  text-align: center;
 }
 a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .colButton {
-    margin-left: 5px;
-    margin-right: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
