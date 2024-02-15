@@ -53,6 +53,8 @@ function makeOMove($board)
     }
 
     // If there are empty cells, choose a random one
+
+    //FIXME: this function always comes after isTiedGame, and the function checks whether any row contains empty cells. So, I believe this condition is always true.
     if (!empty($emptyCells)) {
         $randomCell = $emptyCells[array_rand($emptyCells)];
         $board[$randomCell[0]][$randomCell[1]] = 'O';
@@ -86,7 +88,8 @@ if (isset($_GET['name'])) { // Check if 'name' parameter is set in the URL
         // Decode and update the board with the move
         $boardValues = explode(' ', urldecode($_GET['board']));
         $board = array_chunk($boardValues, 3);
-        // var_dump($board); echo '<br>';
+
+        //FIXME: there should be only two parameters: name and board
         if (isset($_GET['move']) && strlen($_GET['move']) == 2) {
             $moveRow = $_GET['move'][0];
             $moveCol = $_GET['move'][1];
@@ -101,6 +104,8 @@ if (isset($_GET['name'])) { // Check if 'name' parameter is set in the URL
             echo "<p><a href='/ttt.php?name=$name'>Play again</a></p>";
             exit();
         }
+
+        //FIXME: I think there should be Play Again button
         if (isTiedGame($board)) {
             echo "<p>WINNER: NONE. A STRANGE GAME. THE ONLY WINNING MOVE IS NOT TO PLAY.</p>";
             displayBoard($board, $name);
