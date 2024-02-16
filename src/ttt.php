@@ -53,12 +53,8 @@ function makeOMove($board)
     }
 
     // If there are empty cells, choose a random one
-
-    //FIXME: this function always comes after isTiedGame, and the function checks whether any row contains empty cells. So, I believe this condition is always true.
-    if (!empty($emptyCells)) {
-        $randomCell = $emptyCells[array_rand($emptyCells)];
-        $board[$randomCell[0]][$randomCell[1]] = 'O';
-    }
+    $randomCell = $emptyCells[array_rand($emptyCells)];
+    $board[$randomCell[0]][$randomCell[1]] = 'O';
 
     return $board;
 }
@@ -71,7 +67,12 @@ function displayBoard($board, $name)
     for ($i = 0; $i < 3; $i++) {
         echo "<tr>";
         for ($j = 0; $j < 3; $j++) {
-            $cellValue = $board[$i][$j] == '' ? "<a href='/ttt.php?name=$name&board=" . urlencode(implode(' ', array_merge(...$board))) . "&move=$i$j'> - </a>" : $board[$i][$j];
+            // Construct the move with the updated board
+            $newBoard = $board;
+            $newBoard[$i][$j] = 'X'; // Player X makes a move
+            $cellValue = $board[$i][$j] == '' ? 
+                "<a class='cell' href='/ttt.php?name=$name&board=" . urlencode(implode(' ', array_merge(...$newBoard))) . "'>&nbsp;</a>" : 
+                "<a>" . $board[$i][$j] . "</a>";
             echo "<td>$cellValue</td>";
         }
         echo "</tr>";
@@ -89,27 +90,17 @@ if (isset($_GET['name'])) { // Check if 'name' parameter is set in the URL
         $boardValues = explode(' ', urldecode($_GET['board']));
         $board = array_chunk($boardValues, 3);
 
-        //FIXME: there should be only two parameters: name and board
-        if (isset($_GET['move']) && strlen($_GET['move']) == 2) {
-            $moveRow = $_GET['move'][0];
-            $moveCol = $_GET['move'][1];
-            if ($board[$moveRow][$moveCol] == '') {
-                $board[$moveRow][$moveCol] = 'X'; // Player X makes a move
-            }
-        }
-
         if (checkWinner($board, 'X')) {
             echo "<p>You won!</p>";
             displayBoard($board, $name);
-            echo "<p><a href='/ttt.php?name=$name'>Play again</a></p>";
+            echo "<button><a href='/ttt.php?name=$name'>Play again</a></button>";
             exit();
         }
 
-        //FIXME: I think there should be Play Again button
         if (isTiedGame($board)) {
             echo "<p>WINNER: NONE. A STRANGE GAME. THE ONLY WINNING MOVE IS NOT TO PLAY.</p>";
             displayBoard($board, $name);
-            echo "<p><a href='/ttt.php?name=$name'>Play again</a></p>";
+            echo "<button><a href='/ttt.php?name=$name'>Play again</a></button>";
             exit();
         }
 
@@ -117,7 +108,7 @@ if (isset($_GET['name'])) { // Check if 'name' parameter is set in the URL
         if (checkWinner($board, 'O')) {
             echo "<p>I won!</p>";
             displayBoard($board, $name);
-            echo "<p><a href='/ttt.php?name=$name'>Play again</a></p>";
+            echo "<button><a href='/ttt.php?name=$name'>Play again</a></button>";
             exit();
         }
     }

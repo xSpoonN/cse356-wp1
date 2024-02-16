@@ -1,38 +1,39 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  min-height: 100%;
-  margin: 1rem;
+  justify-content: center;
+  height: 70vh;
+  margin: 0;
 }
 
 p {
   color: rgb(2, 0, 136);
-  font-size: 24px;
-  font-weight: bold;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font: bold 24px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 table {
   border-collapse: collapse;
-  width: 140px;
-  height: 80px;
   margin: 20px 0;
 }
-table,
-th,
-td {
+table, th, td {
   border: 1px solid black;
-}
-th,
-td {
-  padding: 10px;
   text-align: center;
+}
+td {
+  width: 50px;
+  height: 50px;
+}
+td a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 a {
   text-decoration: none;
-  color: black;
-  font-weight: bold;
   font-size: 20px;
+}
+.cell {
+  margin: 0;
 }
