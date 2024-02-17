@@ -163,7 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
         <input type="submit" />
     </form>';
 }
-
 function displayBoard($board, $name)
 {
     echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
@@ -172,9 +171,13 @@ function displayBoard($board, $name)
         // Check if the column is full
         $columnFull = ($board[0][$col] !== '');
 
-        echo "<button type='submit' name='board' value='" . urlencode(implode('.', array_map(function($row) {
-            return implode(' ', $row);
-        }, makeMove($board, $col, "X")))) . "' class='colButton' " . ($columnFull ? 'disabled' : '') . ">" . ($col + 1) . "</button>";
+        if (!$columnFull) {
+            echo "<button type='submit' name='board' value='" . urlencode(implode('.', array_map(function($row) {
+                return implode(' ', $row);
+            }, makeMove($board, $col, "X")))) . "' class='colButton' " . ($columnFull ? 'disabled' : '') . ">" . ($col + 1) . "</button>";
+        } else {
+            echo "<div class='col-placeholder'>&nbsp;</div>";
+        }
     }
     echo "<input type='hidden' name='name' value='$name'>";
     echo "</form>";

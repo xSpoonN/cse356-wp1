@@ -25,3 +25,11 @@ a {
 .colButton[disabled] {
   visibility: hidden;
 }
+
+.col-placeholder {
+  margin-left: 6px;
+  margin-right: 6px;
+  width: 21.61px;
+  height: 19.76px;
+  display: inline-block;
+}
