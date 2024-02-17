@@ -101,7 +101,7 @@ if (isset($_GET['name'])) { // Check if 'name' parameter is set in the URL
         if (isTiedGame($board)) {
             echo "<p>WINNER: NONE. A STRANGE GAME. THE ONLY WINNING MOVE IS NOT TO PLAY.</p>";
             displayBoard($board, $name);
-            echo "<button><a href='/ttt.php?name=$name'>Play again</a></button>";
+            /* echo "<button><a href='/ttt.php?name=$name'>Play again</a></button>"; */
             exit();
         }
 
