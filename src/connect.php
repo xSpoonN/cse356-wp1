@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
 
         if (checkWinner($board, 'X')) {
             echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
-            echo "<p>You won</p>";
+            echo "<p>You won!</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
