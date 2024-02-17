@@ -120,7 +120,7 @@ if (isset($_GET['name'])) { // Check if 'name' parameter is set in the URL
     <form action="/ttt.php" method="GET">
         <label for="name">Enter your name:</label>
         <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
+        <input type="submit" />
     </form>';
 }
 ?>

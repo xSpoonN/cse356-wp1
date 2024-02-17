@@ -146,7 +146,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) || isset($_
             echo "<p>" . ($res === 1 ? 'You lose!' : 'You win!') . "</p>";
             displayBoard($_SESSION["board"], $_SESSION["name"], $_SESSION["movesLeft"], true);
             echo "<p><form action='/battleship.php' method='POST'>
-                    <button type='submit' name='play_again'>Play again</button>
+                    <input type='submit' name='play_again' value='Play Again' />
                   </form></p>";
             exit();
         }
@@ -158,7 +158,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) || isset($_
     <form action="/battleship.php" method="POST">
         <label for="name">Enter your name:</label>
         <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
+        <input type="submit" />
     </form>';
 }
 ?>

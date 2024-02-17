@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect-4 Game</title>
+    <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="style-c4.css">
+    <title>Connect-4 Game</title>
 </head>
 <body>
 
@@ -117,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <button type='submit' name='play_again'>Play again</button>
+                    <input type='submit' name='play_again' value='Play Again' />
                     </form></p>";
             exit();
         }
@@ -126,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <button type='submit' name='play_again'>Play again</button>
+                    <input type='submit' name='play_again' value='Play Again' />
                     </form></p>";
             exit();
         }
@@ -136,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <button type='submit' name='play_again'>Play again</button>
+                    <input type='submit' name='play_again' value='Play Again' />
                     </form></p>";
             exit();
         }
@@ -147,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <button type='submit' name='play_again'>Play again</button>
+                    <input type='submit' name='play_again' value='Play Again' />
                     </form></p>";
             exit();
         }
@@ -159,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
     <form action="/connect.php" method="POST">
         <label for="name">Enter your name:</label>
         <input type="text" id="name" name="name" required>
-        <button type="submit">Submit</button>
+        <input type="submit" />
     </form>';
 }
 
