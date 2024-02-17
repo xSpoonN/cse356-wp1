@@ -21,3 +21,7 @@ a {
   margin-left: 5px;
   margin-right: 5px;
 }
+
+.colButton[disabled] {
+  visibility: hidden;
+}
