@@ -158,6 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
         }
     }
 
+    echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
     displayBoard($board, $name);
 } else {
     echo '
