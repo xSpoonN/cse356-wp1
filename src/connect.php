@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
         }
         if (isDraw($board)) {
             echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
-            echo "<p>Draw!</p>";
+            echo "<p>Draw</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
         // Check if the game is a draw after the server's move
         if (isDraw($board)) {
             echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
-            echo "<p>Draw!</p>";
+            echo "<p>Draw</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
