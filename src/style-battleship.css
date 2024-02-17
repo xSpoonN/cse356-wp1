@@ -1,37 +1,9 @@
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+td button {
   width: 100%;
-  min-height: 100%;
-  margin: 1rem;
-}
-
-p {
-  color: rgb(2, 0, 136);
-  font-size: 24px;
-  font-weight: bold;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-table {
-  border-collapse: collapse;
-  width: 200px;
-  height: 140px;
-  margin: 5px 0;
-}
-table,
-th,
-td {
-  border: 1px solid black;
-}
-th,
-td {
-  padding: 10px;
-  min-width: 12px;
-  max-width: 12px;
-  height: 18px;
-  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button.cell {

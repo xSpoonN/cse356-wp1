@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect-4 Game</title>
+    <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="style-c4.css">
 </head>
 <body>
