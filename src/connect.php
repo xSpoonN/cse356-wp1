@@ -114,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
         }, explode('.', urldecode($_POST['board'])));
 
         if (checkWinner($board, 'X')) {
+            echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
             echo "<p>You won!</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
@@ -123,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             exit();
         }
         if (isDraw($board)) {
+            echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
             echo "<p>Draw!</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
@@ -133,7 +135,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
         }
         $board = makeServerMove($board);
         if (checkWinner($board, 'O')) {
-            echo "<p>I won!</p>";
+            echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
+            echo "<p>I Won!</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
@@ -144,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
 
         // Check if the game is a draw after the server's move
         if (isDraw($board)) {
+            echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
             echo "<p>Draw!</p>";
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
@@ -165,7 +169,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
 }
 function displayBoard($board, $name)
 {
-    echo "<p>Hello $name, " . date('Y-m-d H:i:s') . "</p>";
     echo "<form action='/connect.php' method='POST'>";
     for ($col = 0; $col < 7; $col++) {
         // Check if the column is full
