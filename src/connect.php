@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect-4 Game</title>
-    <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="style-c4.css">
 </head>
 <body>
@@ -113,49 +112,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             return explode(' ', $row);
         }, explode('.', urldecode($_POST['board'])));
 
-        if (isset($_POST['column']) && is_numeric($_POST['column'])) {
-            $column = intval($_POST['column']);
+        if (checkWinner($board, 'X')) {
+            echo "<p>You won!</p>";
+            displayBoard($board, $name);
+            echo "<p><form action='/connect.php' method='POST'>
+                    <input type='hidden' name='name' value='$name'>
+                    <button type='submit' name='play_again'>Play again</button>
+                    </form></p>";
+            exit();
+        }
+        if (isDraw($board)) {
+            echo "<p>Draw!</p>";
+            displayBoard($board, $name);
+            echo "<p><form action='/connect.php' method='POST'>
+                    <input type='hidden' name='name' value='$name'>
+                    <button type='submit' name='play_again'>Play again</button>
+                    </form></p>";
+            exit();
+        }
+        $board = makeServerMove($board);
+        if (checkWinner($board, 'O')) {
+            echo "<p>I won!</p>";
+            displayBoard($board, $name);
+            echo "<p><form action='/connect.php' method='POST'>
+                    <input type='hidden' name='name' value='$name'>
+                    <button type='submit' name='play_again'>Play again</button>
+                    </form></p>";
+            exit();
+        }
 
-            $board = makeMove($board, $column, 'X');
-            if (checkWinner($board, 'X')) {
-                echo "<p>You won!</p>";
-                displayBoard($board, $name);
-                echo "<p><form action='/connect.php' method='POST'>
-                        <input type='hidden' name='name' value='$name'>
-                        <button type='submit' name='play_again'>Play again</button>
-                      </form></p>";
-                exit();
-            }
-            if (isDraw($board)) {
-                echo "<p>Draw!</p>";
-                displayBoard($board, $name);
-                echo "<p><form action='/connect.php' method='POST'>
-                        <input type='hidden' name='name' value='$name'>
-                        <button type='submit' name='play_again'>Play again</button>
-                      </form></p>";
-                exit();
-            }
-            $board = makeServerMove($board);
-            if (checkWinner($board, 'O')) {
-                echo "<p>I won!</p>";
-                displayBoard($board, $name);
-                echo "<p><form action='/connect.php' method='POST'>
-                        <input type='hidden' name='name' value='$name'>
-                        <button type='submit' name='play_again'>Play again</button>
-                      </form></p>";
-                exit();
-            }
-
-            // Check if the game is a draw after the server's move
-            if (isDraw($board)) {
-                echo "<p>Draw!</p>";
-                displayBoard($board, $name);
-                echo "<p><form action='/connect.php' method='POST'>
-                        <input type='hidden' name='name' value='$name'>
-                        <button type='submit' name='play_again'>Play again</button>
-                      </form></p>";
-                exit();
-            }
+        // Check if the game is a draw after the server's move
+        if (isDraw($board)) {
+            echo "<p>Draw!</p>";
+            displayBoard($board, $name);
+            echo "<p><form action='/connect.php' method='POST'>
+                    <input type='hidden' name='name' value='$name'>
+                    <button type='submit' name='play_again'>Play again</button>
+                    </form></p>";
+            exit();
         }
     }
 
@@ -177,14 +171,11 @@ function displayBoard($board, $name)
         // Check if the column is full
         $columnFull = ($board[0][$col] !== '');
 
-        echo "<button type='submit' name='column' value='$col' class='colButton' " . ($columnFull ? 'disabled' : '') . ">" . ($col + 1) . "</button>";
+        echo "<button type='submit' name='board' value='" . urlencode(implode('.', array_map(function($row) {
+            return implode(' ', $row);
+        }, makeMove($board, $col, "X")))) . "' class='colButton' " . ($columnFull ? 'disabled' : '') . ">" . ($col + 1) . "</button>";
     }
     echo "<input type='hidden' name='name' value='$name'>";
-    $tmp = array_map(function($row) {
-        return implode(' ', $row);
-    }, $board);
-    
-    echo "<input type='hidden' name='board' value='" . urlencode(implode('.', $tmp)) . "'>";
     echo "</form>";
 
     echo "<table border='1'>";
