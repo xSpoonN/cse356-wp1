@@ -146,7 +146,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) || isset($_
             echo "<p>" . ($res === 1 ? 'You lose!' : 'You win!') . "</p>";
             displayBoard($_SESSION["board"], $_SESSION["name"], $_SESSION["movesLeft"], true);
             echo "<p><form action='/battleship.php' method='POST'>
-                    <input type='submit' name='play_again' value='Play Again' />
+                    <button type='submit' name='play_again'>Play again</button>
                   </form></p>";
             exit();
         }

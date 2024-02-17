@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <input type='submit' name='play_again' value='Play Again' />
+                    <button type='submit' name='play_again'>Play again</button>
                     </form></p>";
             exit();
         }
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <input type='submit' name='play_again' value='Play Again' />
+                    <button type='submit' name='play_again'>Play again</button>
                     </form></p>";
             exit();
         }
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <input type='submit' name='play_again' value='Play Again' />
+                    <button type='submit' name='play_again'>Play again</button>
                     </form></p>";
             exit();
         }
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'])) {
             displayBoard($board, $name);
             echo "<p><form action='/connect.php' method='POST'>
                     <input type='hidden' name='name' value='$name'>
-                    <input type='submit' name='play_again' value='Play Again' />
+                    <button type='submit' name='play_again'>Play again</button>
                     </form></p>";
             exit();
         }
